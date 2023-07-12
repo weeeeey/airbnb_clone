@@ -1,5 +1,5 @@
 import { Container } from "../";
-import { Categories, BiSearch, Logo, MenuItem, Search, UserMenu } from "./";
+import { Categories, Logo, MenuItem, Search, UserMenu } from "./";
 const Navbar = () => {
     return (
         <div className="fixed w-full bg-white z-10 shadow-sm">
