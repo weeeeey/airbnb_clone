@@ -9,3 +9,4 @@ export { default as Heading } from "./Heading";
 export { default as HeartButton } from "./HeartButton";
 export { default as Loader } from "./Loader";
 export { default as Map } from "./Map";
+export { default as Input } from "./Input";

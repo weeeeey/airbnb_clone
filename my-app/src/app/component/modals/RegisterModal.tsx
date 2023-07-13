@@ -3,10 +3,10 @@ import axios from "axios";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { useCallback, useState } from "react";
-
 import { useRegisterModal } from "../../hooks";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 import { Modal } from "./";
+import { Heading, Input } from "../";
 
 const RegisterModal = () => {
     const registerModal = useRegisterModal();
@@ -37,6 +37,36 @@ const RegisterModal = () => {
                 setIsLoading(false);
             });
     };
+    const bodyContent = (
+        <div className="flex flex-col gap-4">
+            <Heading title="Welcome Airbnb" subTitle="Create an Account!" />
+            <Input
+                register={register}
+                id="email"
+                label="Email"
+                errors={errors}
+                required
+                disabled={isLoading}
+            />
+            <Input
+                register={register}
+                id="name"
+                label="Name"
+                errors={errors}
+                required
+                disabled={isLoading}
+            />
+            <Input
+                register={register}
+                id="password"
+                label="Password"
+                errors={errors}
+                required
+                disabled={isLoading}
+            />
+        </div>
+    );
+
     return (
         <div>
             <Modal
@@ -46,6 +76,7 @@ const RegisterModal = () => {
                 actionLabel="Continue"
                 onClose={registerModal.onClose}
                 onSubmit={handleSubmit(onSubmit)}
+                body={bodyContent}
             />
         </div>
     );
