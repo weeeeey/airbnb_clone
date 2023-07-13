@@ -18,6 +18,8 @@ const Button = ({
 }: ButtonProps) => {
     return (
         <button
+            onClick={onClick}
+            disabled={disabled}
             className={`relative disabled:opacity-70 disabled:cursor-not-allowed rounded-lg hover:opacity-80 transition w-full ${
                 small ? "py-1" : "py-3"
             } ${small ? "text-sm" : "text-base"} ${
