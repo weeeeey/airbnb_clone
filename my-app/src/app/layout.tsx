@@ -1,6 +1,6 @@
 "use client";
 import { ClientOnly, Navbar } from "./component";
-import { Modal } from "./component/modals";
+import { Modal, RegisterModal } from "./component/modals";
 import "./globals.css";
 import { Nunito } from "next/font/google";
 
@@ -22,7 +22,8 @@ export default function RootLayout({
         <html lang="en">
             <body className={font.className}>
                 <ClientOnly>
-                    <Modal
+                    <RegisterModal />
+                    {/* <Modal
                         title="Hello"
                         isOpen
                         onClose={() => {}}
@@ -30,7 +31,7 @@ export default function RootLayout({
                         actionLabel="Submit"
                         secondaryAcionLabel="Exit"
                         secondaryAcion={() => {}}
-                    />
+                    /> */}
                     <Navbar />
                 </ClientOnly>
                 {children}
