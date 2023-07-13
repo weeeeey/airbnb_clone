@@ -1,3 +1,4 @@
+"use client";
 import { ClientOnly, Navbar } from "./component";
 import { Modal } from "./component/modals";
 import "./globals.css";
@@ -21,7 +22,15 @@ export default function RootLayout({
         <html lang="en">
             <body className={font.className}>
                 <ClientOnly>
-                    <Modal title="Hello" isOpen />
+                    <Modal
+                        title="Hello"
+                        isOpen
+                        onClose={() => {}}
+                        onSubmit={() => {}}
+                        actionLabel="Submit"
+                        secondaryAcionLabel="Exit"
+                        secondaryAcion={() => {}}
+                    />
                     <Navbar />
                 </ClientOnly>
                 {children}
