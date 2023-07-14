@@ -3,6 +3,7 @@ import { ClientOnly, Navbar } from "./component";
 import { Modal, RegisterModal } from "./component/modals";
 import "./globals.css";
 import { Nunito } from "next/font/google";
+import ToasterProvider from "./providers/ToasterProvider";
 
 export const metadata = {
     title: "Airbnb",
@@ -22,16 +23,9 @@ export default function RootLayout({
         <html lang="en">
             <body className={font.className}>
                 <ClientOnly>
+                    {/*toasts => 에러 같은 내용 담긴 팝업 창  */}
+                    <ToasterProvider />
                     <RegisterModal />
-                    {/* <Modal
-                        title="Hello"
-                        isOpen
-                        onClose={() => {}}
-                        onSubmit={() => {}}
-                        actionLabel="Submit"
-                        secondaryAcionLabel="Exit"
-                        secondaryAcion={() => {}}
-                    /> */}
                     <Navbar />
                 </ClientOnly>
                 {children}
