@@ -1,11 +1,12 @@
-"use client";
-import { AiOutlineMenu } from "react-icons/ai";
-import { Avatar } from "../";
-import { useState, useCallback } from "react";
-import MenuItem from "./MenuItem";
-import { useLoginModal, useRegisterModal } from "@/app/hooks";
+'use client';
+import { AiOutlineMenu } from 'react-icons/ai';
+import { Avatar } from '../';
+import { useState, useCallback, useRef, useEffect } from 'react';
+import MenuItem from './MenuItem';
+import { useLoginModal, useRegisterModal } from '@/app/hooks';
 
 const UserMenu = () => {
+    const modalRef = useRef<HTMLDivElement>(null);
     const registerModal = useRegisterModal();
     const loginModal = useLoginModal();
 
@@ -13,6 +14,17 @@ const UserMenu = () => {
     const toggleOpen = useCallback(() => {
         setIsOpen((p) => !p);
     }, []);
+    useEffect(() => {
+        const clickOutside = (e: any) => {
+            if (isOpen && !modalRef.current?.contains(e.target)) {
+                setIsOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', clickOutside);
+        return () => {
+            document.removeEventListener('mousedown', clickOutside);
+        };
+    }, [isOpen]);
     return (
         <div className="relative">
             <div className="flex flex-row items-center gap-3">
@@ -33,7 +45,10 @@ const UserMenu = () => {
                 </div>
             </div>
             {isOpen && (
-                <div className="absolute top-12 right-0 rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden text-sm">
+                <div
+                    ref={modalRef}
+                    className="absolute top-12 right-0 rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden text-sm"
+                >
                     <div className="flex flex-col cursor-pointer">
                         <>
                             <MenuItem
