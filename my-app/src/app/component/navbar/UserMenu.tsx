@@ -1,11 +1,11 @@
-"use client";
-import { AiOutlineMenu } from "react-icons/ai";
-import { Avatar } from "../";
-import { useState, useCallback, useRef, useEffect } from "react";
-import MenuItem from "./MenuItem";
-import { useLoginModal, useRegisterModal } from "@/app/hooks";
-import { User } from "@prisma/client";
-
+'use client';
+import { AiOutlineMenu } from 'react-icons/ai';
+import { Avatar } from '../';
+import { useState, useCallback, useRef, useEffect } from 'react';
+import MenuItem from './MenuItem';
+import { useLoginModal, useRegisterModal } from '@/app/hooks';
+import { User } from '@prisma/client';
+import { signOut } from 'next-auth/react';
 interface UserMenuProps {
     currentUser?: User | null;
 }
@@ -25,9 +25,9 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
                 setIsOpen(false);
             }
         };
-        document.addEventListener("mousedown", clickOutside);
+        document.addEventListener('mousedown', clickOutside);
         return () => {
-            document.removeEventListener("mousedown", clickOutside);
+            document.removeEventListener('mousedown', clickOutside);
         };
     }, [isOpen]);
     return (
@@ -75,7 +75,12 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
                                     onClick={() => {}}
                                 />
                                 <hr />
-                                <MenuItem label="LogOut" onClick={() => {}} />
+                                <MenuItem
+                                    label="LogOut"
+                                    onClick={() => {
+                                        signOut();
+                                    }}
+                                />
                             </>
                         ) : (
                             <>
