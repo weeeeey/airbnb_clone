@@ -1,14 +1,13 @@
-import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import prisma from '@/app/libs/prismadb';
-import bcrypt from 'bcrypt';
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import prisma from "@/app/libs/prismadb";
+import bcrypt from "bcrypt";
 
-import NextAuth, { AuthOptions } from 'next-auth';
-import GithubProvider from 'next-auth/providers/github';
-import GoogleProvider from 'next-auth/providers/google';
-import CredentialsProvider from 'next-auth/providers/credentials';
+import NextAuth, { AuthOptions } from "next-auth";
+import GithubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions: AuthOptions = {
-    // Configure one or more authentication providers
     adapter: PrismaAdapter(prisma),
     providers: [
         GithubProvider({
@@ -20,14 +19,14 @@ export const authOptions: AuthOptions = {
             clientSecret: process.env.GOOGLE_SECRET!,
         }),
         CredentialsProvider({
-            name: 'credentials',
+            name: "credentials",
             credentials: {
-                email: { label: 'email', type: 'text' },
-                password: { label: 'password', type: 'password' },
+                email: { label: "email", type: "text" },
+                password: { label: "password", type: "password" },
             },
             async authorize(credentials) {
                 if (!credentials?.email || !credentials?.password) {
-                    throw new Error('invaild credentials');
+                    throw new Error("invaild credentials");
                 }
                 const user = await prisma.user.findUnique({
                     where: {
@@ -36,26 +35,26 @@ export const authOptions: AuthOptions = {
                 });
 
                 if (!user || !user.hashedPassword) {
-                    throw new Error('inVaild credentials');
+                    throw new Error("inVaild credentials");
                 }
                 const isCorrectPassword = await bcrypt.compare(
                     credentials.password,
                     user.hashedPassword
                 );
                 if (!isCorrectPassword) {
-                    throw new Error('Invaild credentials');
+                    throw new Error("Invaild credentials");
                 }
                 return user;
             },
         }),
-        // ...add more providers here
     ],
+
     pages: {
-        signIn: '/',
+        signIn: "/",
     },
-    debug: process.env.NODE_ENV === 'development',
+    debug: process.env.NODE_ENV === "development",
     session: {
-        strategy: 'jwt',
+        strategy: "jwt",
     },
     secret: process.env.NEXTAUTH_SECRET,
 };

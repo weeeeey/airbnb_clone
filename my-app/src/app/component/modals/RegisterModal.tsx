@@ -2,8 +2,8 @@
 import axios from "axios";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
-import { useCallback, useState } from "react";
-import { useRegisterModal } from "../../hooks";
+import { useState } from "react";
+import { useRegisterModal, useLoginModal } from "../../hooks";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 import { Modal } from "./";
 import { Button, Heading, Input } from "../";
@@ -11,6 +11,7 @@ import { toast } from "react-hot-toast";
 
 const RegisterModal = () => {
     const registerModal = useRegisterModal();
+    const loginModal = useLoginModal();
     const [isLoading, setIsLoading] = useState(false);
     const {
         register,
@@ -87,7 +88,10 @@ const RegisterModal = () => {
                 <div className="flex flex-row items-center gap-2 text-center justify-center">
                     <div>Already have an account?</div>
                     <div
-                        onClick={registerModal.onClose}
+                        onClick={() => {
+                            registerModal.onClose();
+                            loginModal.onOpen();
+                        }}
                         className="text-neutral-800 cursor-pointer hover:underline"
                     >
                         Log in
