@@ -1,7 +1,7 @@
-import { getServerSession } from 'next-auth/next';
+import { getServerSession } from "next-auth/next";
 
-import { authOptions } from '@/pages/api/auth/[...nextauth]';
-import prisma from '@/app/libs/prismadb';
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import prisma from "@/app/libs/prismadb";
 
 export async function getSession() {
     return await getServerSession(authOptions);
@@ -25,7 +25,12 @@ export default async function getCurrentUser() {
             return null;
         }
 
-        return currentUser;
+        return {
+            ...currentUser,
+            emailVerified: currentUser.emailVerified?.toISOString() || null, //JS 날짜 포맷
+            createdAt: currentUser.createdAt.toISOString(),
+            updatedAt: currentUser.updatedAt.toISOString(),
+        };
     } catch (error: any) {
         return null;
     }

@@ -8,6 +8,7 @@ import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 import { Modal } from "./";
 import { Button, Heading, Input } from "../";
 import { toast } from "react-hot-toast";
+import { signIn } from "next-auth/react";
 
 const RegisterModal = () => {
     const registerModal = useRegisterModal();
@@ -75,13 +76,17 @@ const RegisterModal = () => {
             <Button
                 label="Continue with Google"
                 outline
-                onClick={() => {}}
+                onClick={() => {
+                    signIn("google");
+                }}
                 icon={FcGoogle}
             />
             <Button
                 label="Continue with Github"
                 outline
-                onClick={() => {}}
+                onClick={() => {
+                    signIn("github");
+                }}
                 icon={AiFillGithub}
             />
             <div className="text-neutral-500 text-center mt-4 font-light">
