@@ -1,6 +1,6 @@
 import { ClientOnly, Navbar } from "./component";
 import { getCurrentUser } from "@/app/actions/";
-import { RegisterModal, LoginModal } from "./component/modals";
+import { RegisterModal, LoginModal, RentModal } from "./component/modals";
 import "./globals.css";
 import { Nunito } from "next/font/google";
 import ToasterProvider from "./providers/ToasterProvider";
@@ -26,6 +26,7 @@ export default async function RootLayout({
                 <ClientOnly>
                     {/*toasts => 에러 같은 내용 담긴 팝업 창  */}
                     <ToasterProvider />
+                    <RentModal />
                     <LoginModal />
                     <RegisterModal />
                     <Navbar currentUser={currentUser} />

@@ -2,7 +2,7 @@
 import axios from "axios";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useRegisterModal, useLoginModal } from "../../hooks";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 import { Modal } from "./";
@@ -40,6 +40,10 @@ const RegisterModal = () => {
                 setIsLoading(false);
             });
     };
+    const onToggle = useCallback(() => {
+        registerModal.onClose();
+        loginModal.onOpen();
+    }, [loginModal, registerModal]);
 
     const bodyContent = (
         <div className="flex flex-col gap-4">
@@ -93,10 +97,7 @@ const RegisterModal = () => {
                 <div className="flex flex-row items-center gap-2 text-center justify-center">
                     <div>Already have an account?</div>
                     <div
-                        onClick={() => {
-                            registerModal.onClose();
-                            loginModal.onOpen();
-                        }}
+                        onClick={onToggle}
                         className="text-neutral-800 cursor-pointer hover:underline"
                     >
                         Log in

@@ -1,3 +1,4 @@
+"use client";
 import { CategoryBox, Container } from "../";
 import { usePathname, useSearchParams } from "next/navigation";
 
@@ -106,7 +107,7 @@ const Categories = () => {
 
     return (
         <Container>
-            <div className="pt-4 flex flex-row items-center justify-between overflow-x-auto">
+            <div className="pt-4 flex flex-row items-center justify-between overflow-x-auto scrollbar-hide">
                 {categories.map((c) => (
                     <CategoryBox
                         key={c.label}
