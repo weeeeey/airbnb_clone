@@ -1,11 +1,11 @@
 import countries from "world-countries";
 
 const formatedCountries = countries.map((c) => ({
-    value: c.cca2,
-    label: c.name.common,
-    flag: c.flag,
-    latlng: c.latlng,
-    region: c.region,
+    value: c.cca2, //국가 코드
+    label: c.name.common, //국가 이름
+    flag: c.flag, //국가 이미지url
+    latlng: c.latlng, //국가 위도 경도
+    region: c.region, // 국가 대륙
 }));
 
 const useCountries = () => {

@@ -1,3 +1,4 @@
+"use client";
 const Map = () => {
     return <div>Map</div>;
 };
