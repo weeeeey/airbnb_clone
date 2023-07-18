@@ -6,6 +6,7 @@ import Heading from "../Heading";
 import { categories } from "../navbar/Categories";
 import CategoryInput from "../inputs/CategoryInput";
 import { FieldValues, useForm } from "react-hook-form";
+import CountrySelect from "../inputs/CountrySelect";
 
 enum STEPS {
     CATEGORY = 0,
@@ -68,34 +69,48 @@ const RentModal = () => {
         return "Back";
     }, [step]);
 
-    let bodyContet = (
-        <div className="flex flex-col gap-8">
-            <Heading
-                title="Which of these best dexcribe your place?"
-                subTitle="Pick a category"
-            />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto scrollbar-hide">
-                {categories.map((item) => (
-                    <CategoryInput
-                        icon={item.icon}
-                        // category는 watch를 통해 내가 지켜보고 있는 그것
-                        onClick={(cate) => {
-                            setCustomValue("category", cate);
-                        }}
-                        selected={category === item.label}
-                        label={item.label}
-                        key={item.label}
-                    />
-                ))}
+    let bodyContet = <></>;
+    if (step === STEPS.CATEGORY) {
+        bodyContet = (
+            <div className="flex flex-col gap-8">
+                <Heading
+                    title="Which of these best dexcribe your place?"
+                    subTitle="Pick a category"
+                />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto scrollbar-hide">
+                    {categories.map((item) => (
+                        <CategoryInput
+                            icon={item.icon}
+                            // category는 watch를 통해 내가 지켜보고 있는 그것
+                            onClick={(cate) => {
+                                setCustomValue("category", cate);
+                            }}
+                            selected={category === item.label}
+                            label={item.label}
+                            key={item.label}
+                        />
+                    ))}
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
+    if (step === STEPS.LOCATION) {
+        bodyContet = (
+            <div className="flex flex-col gap-8">
+                <Heading
+                    title="Where is your place located?"
+                    subTitle="Help guests find you!"
+                />
+                <CountrySelect />
+            </div>
+        );
+    }
     return (
         <div>
             <Modal
                 isOpen={rentModal.isOpen}
                 onClose={rentModal.onClose}
-                onSubmit={rentModal.onClose}
+                onSubmit={onNext}
                 title="Airbnb your home"
                 actionLabel={actionLabel}
                 secondaryAcionLabel={secondaryActionLabel}
