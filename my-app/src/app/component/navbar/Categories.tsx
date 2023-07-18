@@ -18,7 +18,6 @@ import { IoDiamond } from "react-icons/io5";
 import { MdOutlineVilla } from "react-icons/md";
 import { FaSkiing } from "react-icons/fa";
 import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
-import { useCallback } from "react";
 
 export const categories = [
     {

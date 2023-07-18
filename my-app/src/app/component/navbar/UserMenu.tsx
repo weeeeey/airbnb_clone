@@ -32,12 +32,14 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
             document.removeEventListener("mousedown", clickOutside);
         };
     }, [isOpen]);
+
     const onRent = useCallback(() => {
         if (!currentUser) {
             return loginModal.onOpen();
         }
         rentModal.onOpen();
     }, [currentUser, loginModal, rentModal]);
+
     return (
         <div className="relative">
             <div className="flex flex-row items-center gap-3">
@@ -62,7 +64,7 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
             {isOpen && (
                 <div
                     ref={modalRef}
-                    className="absolute top-12 right-0 rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden text-sm"
+                    className="absolute top-12 right-0 rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden text-sm z-10"
                 >
                     <div className="flex flex-col cursor-pointer">
                         {currentUser ? (
@@ -82,7 +84,7 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
                                 />
                                 <MenuItem
                                     label="Airbnb my home"
-                                    onClick={() => {}}
+                                    onClick={rentModal.onOpen}
                                 />
                                 <hr />
                                 <MenuItem
