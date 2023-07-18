@@ -79,8 +79,8 @@ const RentModal = () => {
                     <CategoryInput
                         icon={item.icon}
                         // category는 watch를 통해 내가 지켜보고 있는 그것
-                        onClick={(category) => {
-                            setCustomValue("category", category);
+                        onClick={(cate) => {
+                            setCustomValue("category", cate);
                         }}
                         selected={category === item.label}
                         label={item.label}
