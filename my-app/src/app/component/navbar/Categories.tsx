@@ -123,12 +123,13 @@ const Categories = () => {
         <div className="relative">
             <Container>
                 <AiOutlineLeft
-                    className="text-neutral-400 hover:text-neutral-800 hover:bg-slate-200 absolute left-0 hover:bg-opacity-50 h-full"
+                    className="text-neutral-400 hover:text-neutral-800 hover:bg-slate-200 absolute left-0 hover:bg-opacity-50 h-full my-size:hidden "
+                    style={{}}
                     onClick={slideOnLeft}
                     size={24}
                 />
                 <AiOutlineRight
-                    className="text-neutral-400 hover:text-neutral-800 hover:bg-slate-200 absolute right-0 hover:bg-opacity-50 h-full"
+                    className="text-neutral-400 hover:text-neutral-800 hover:bg-slate-200 absolute right-0 hover:bg-opacity-50 h-full my-size:hidden"
                     onClick={slideOnRight}
                     size={24}
                 />
