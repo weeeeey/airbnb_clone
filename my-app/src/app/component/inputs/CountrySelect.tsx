@@ -1,6 +1,6 @@
-"use client";
-import { useCountries } from "@/app/hooks";
-import Select from "react-select";
+'use client';
+import { useCountries } from '@/app/hooks';
+import Select from 'react-select';
 
 export type CountrySelectValue = {
     value: string;
@@ -24,7 +24,7 @@ const CountrySelect = ({ value, onChange }: CountrySelectProps) => {
                 options={getAll()}
                 value={value}
                 onChange={(v) => onChange(v as CountrySelectValue)}
-                formatOptionLabel={(option: any) => (
+                formatOptionLabel={(option: CountrySelectValue) => (
                     <div className="flex flex-row items-center gap-3">
                         <div>{option.flag}</div>
                         <div>
@@ -36,17 +36,17 @@ const CountrySelect = ({ value, onChange }: CountrySelectProps) => {
                     </div>
                 )}
                 classNames={{
-                    control: () => "p-3 border-2",
-                    input: () => "text-lg",
-                    option: () => "text-lg",
+                    control: () => 'p-3 border-2',
+                    input: () => 'text-lg',
+                    option: () => 'text-lg',
                 }}
                 theme={(theme) => ({
                     ...theme,
                     borderRadius: 6,
                     colors: {
                         ...theme.colors,
-                        primary: "black",
-                        primary25: "#ffe436",
+                        primary: 'black',
+                        primary25: '#ffe436',
                     },
                 })}
             />
