@@ -1,14 +1,12 @@
 "use client";
-import { useRentModal } from "../../hooks";
-import { Modal } from ".";
 import { useMemo, useState } from "react";
-import Heading from "../Heading";
-import { categories } from "../navbar/Categories";
-import CategoryInput from "../inputs/CategoryInput";
-import { FieldValues, useForm } from "react-hook-form";
-import CountrySelect from "../inputs/CountrySelect";
 import dynamic from "next/dynamic";
-import Counter from "../inputs/Counter";
+import { Modal } from ".";
+import { useRentModal } from "../../hooks";
+import { categories } from "../navbar/Categories";
+import { CategoryInput, CountrySelect, Counter, ImageUpload } from "../inputs";
+import { FieldValues, useForm } from "react-hook-form";
+import { Heading } from "../";
 
 enum STEPS {
     CATEGORY = 0,
@@ -53,6 +51,7 @@ const RentModal = () => {
     const guestCount = watch("guestCount");
     const roomCount = watch("roomCount");
     const bathroomCount = watch("bathroomCount");
+    const imageSrc = watch("imageSrc");
 
     const Map = useMemo(
         () => dynamic(() => import("../Map"), { ssr: false }),
@@ -125,7 +124,7 @@ const RentModal = () => {
         bodyContet = (
             <div className="flex flex-col gap-8">
                 <Heading
-                    title="Share som basics about your place"
+                    title="Share some basics about your place"
                     subTitle="What amenities do you have?"
                 />
                 <Counter
@@ -147,6 +146,20 @@ const RentModal = () => {
                     subtitle="How many bathrooms do you allow?"
                     onChange={(value) => setCustomValue("bathroomCount", value)}
                     value={bathroomCount}
+                />
+            </div>
+        );
+    }
+    if (step === STEPS.IMAGES) {
+        bodyContet = (
+            <div className="flex flex-col gap-8">
+                <Heading
+                    title="Add a photo of your place"
+                    subTitle="Show guests what your place looks like"
+                />
+                <ImageUpload
+                    onChange={(value) => setCustomValue("imageSrc", value)}
+                    value={imageSrc}
                 />
             </div>
         );
