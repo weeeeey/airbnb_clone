@@ -1,8 +1,8 @@
-"use client";
-import { CldUploadWidget } from "next-cloudinary";
-import Image from "next/image";
-import { useCallback, useEffect } from "react";
-import { TbPhotoPlus } from "react-icons/tb";
+'use client';
+import { CldUploadWidget } from 'next-cloudinary';
+import Image from 'next/image';
+import { useCallback, useEffect } from 'react';
+import { TbPhotoPlus } from 'react-icons/tb';
 
 declare global {
     var cloudinary: any;
@@ -40,7 +40,12 @@ const ImageUpload = ({ onChange, value }: ImageUploadProps) => {
                         </div>
                         {value && (
                             <div className="absolute inset-0 w-full h-full">
-                                <Image src={value} fill alt="Upload" />
+                                <Image
+                                    src={value}
+                                    style={{ objectFit: 'cover' }}
+                                    fill
+                                    alt="House"
+                                />
                             </div>
                         )}
                     </div>
