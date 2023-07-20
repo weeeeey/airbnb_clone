@@ -8,6 +8,7 @@ import CategoryInput from "../inputs/CategoryInput";
 import { FieldValues, useForm } from "react-hook-form";
 import CountrySelect from "../inputs/CountrySelect";
 import dynamic from "next/dynamic";
+import Counter from "../inputs/Counter";
 
 enum STEPS {
     CATEGORY = 0,
@@ -49,6 +50,10 @@ const RentModal = () => {
     }); //schema. Listing
     const category = watch("category");
     const location = watch("location");
+    const guestCount = watch("guestCount");
+    const roomCount = watch("roomCount");
+    const bathroomCount = watch("bathroomCount");
+
     const Map = useMemo(
         () => dynamic(() => import("../Map"), { ssr: false }),
         [location]
@@ -113,6 +118,36 @@ const RentModal = () => {
                     onChange={(value) => setCustomValue("location", value)}
                 />
                 <Map center={location?.latlng} />
+            </div>
+        );
+    }
+    if (step === STEPS.INFO) {
+        bodyContet = (
+            <div className="flex flex-col gap-8">
+                <Heading
+                    title="Share som basics about your place"
+                    subTitle="What amenities do you have?"
+                />
+                <Counter
+                    title="Guests"
+                    subtitle="How many guest do you allow?"
+                    onChange={(value) => setCustomValue("guestCount", value)}
+                    value={guestCount}
+                />
+                <hr />
+                <Counter
+                    title="Rooms"
+                    subtitle="How many rooms do you have?"
+                    onChange={(value) => setCustomValue("roomCount", value)}
+                    value={roomCount}
+                />
+                <hr />
+                <Counter
+                    title="Bathrooms"
+                    subtitle="How many bathrooms do you allow?"
+                    onChange={(value) => setCustomValue("bathroomCount", value)}
+                    value={bathroomCount}
+                />
             </div>
         );
     }

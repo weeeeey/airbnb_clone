@@ -24,7 +24,7 @@ const Map = ({ center }: MapProps) => {
         <MapContainer
             center={(center as L.LatLngExpression) || [51, -0.09]}
             zoom={center ? 4 : 2}
-            scrollWheelZoom={false}
+            scrollWheelZoom
             className="h-[35vh] rounded-lg"
         >
             {/* https://react-leaflet.js.org/에서 복사, 지도*/}
