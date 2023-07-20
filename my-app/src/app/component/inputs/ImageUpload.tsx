@@ -40,12 +40,7 @@ const ImageUpload = ({ onChange, value }: ImageUploadProps) => {
                         </div>
                         {value && (
                             <div className="absolute inset-0 w-full h-full">
-                                <Image
-                                    src={value}
-                                    fill
-                                    style={{ objectFit: "fill" }}
-                                    alt="Upload"
-                                />
+                                <Image src={value} fill alt="Upload" />
                             </div>
                         )}
                     </div>

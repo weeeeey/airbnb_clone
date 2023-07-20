@@ -37,7 +37,7 @@ const Input = ({
                 placeholder=" "
                 type={type}
                 className={`peer w-full p-4 pt-6 font-light bg-white border-2 rounded-md outline-none transition disabled:opacity-70 disabled:cursor-not-allowed ${
-                    formatPrice ? "pl-6" : "pl-4"
+                    formatPrice ? "pl-8" : "pl-4"
                 } ${errors[id] ? "border-rose-500" : "border-neutral-300"} ${
                     errors[id] ? "focus:border-rose-500" : "focus:border-black"
                 }`}
