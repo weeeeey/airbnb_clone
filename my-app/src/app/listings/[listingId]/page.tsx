@@ -1,4 +1,8 @@
+import { getCurrentUser } from "@/app/actions";
 import getListingById from "@/app/actions/getListingById";
+import { ClientOnly, Container, EmptyState } from "@/app/component";
+import LisintingClient from "@/app/listings/[listingId]/LisintingClient";
+import Image from "next/image";
 
 interface IParams {
     listingId?: string;
@@ -6,8 +10,19 @@ interface IParams {
 
 const ListingPage = async ({ params }: { params: IParams }) => {
     const listing = await getListingById(params);
-    console.log(params);
-    return <div>{listing?.category}</div>;
+    const currentUser = await getCurrentUser();
+    if (!listing) {
+        return (
+            <ClientOnly>
+                <EmptyState />
+            </ClientOnly>
+        );
+    }
+    return (
+        <ClientOnly>
+            <LisintingClient currentUser={currentUser} listing={listing} />
+        </ClientOnly>
+    );
 };
 
 export default ListingPage;
