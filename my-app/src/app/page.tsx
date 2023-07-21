@@ -3,8 +3,8 @@ import { ClientOnly, Container, EmptyState } from "./component";
 import LisingCard from "./component/listings/LisingCard";
 
 export default async function Home() {
-    const listings = await getListing();
     const currentUser = await getCurrentUser();
+    const listings = await getListing();
 
     if (listings.length === 0) {
         return (
@@ -13,6 +13,7 @@ export default async function Home() {
             </ClientOnly>
         );
     }
+
     return (
         <ClientOnly>
             <Container>

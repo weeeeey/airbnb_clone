@@ -1,12 +1,14 @@
-'use client';
+"use client";
 
-import { useCallback, useMemo } from 'react';
-import { Listing, Reservation } from '@prisma/client';
-import { SafeUser } from '@/app/types';
-import { useRouter } from 'next/navigation';
-import { useCountries } from '@/app/hooks';
-import { format } from 'date-fns';
-import Image from 'next/image';
+import { useCallback, useMemo } from "react";
+import { Listing, Reservation } from "@prisma/client";
+import { SafeUser } from "@/app/types";
+import { useRouter } from "next/navigation";
+import { useCountries } from "@/app/hooks";
+import { format } from "date-fns";
+import Image from "next/image";
+import HeartButton from "../HeartButton";
+import Button from "../Button";
 
 interface ListingCardProps {
     data: Listing;
@@ -24,7 +26,7 @@ const LisingCard = ({
     onAction,
     disabled,
     actionLabel,
-    actionId = '',
+    actionId = "",
 }: ListingCardProps) => {
     const router = useRouter();
     const { getByValue } = useCountries();
@@ -55,7 +57,7 @@ const LisingCard = ({
         const start = new Date(reservation.startDate);
         const end = new Date(reservation.endDate);
 
-        return `${format(start, 'PP')} ~ ${format(end, 'PP')}`;
+        return `${format(start, "PP")} ~ ${format(end, "PP")}`;
     }, [reservation]);
     return (
         <div
@@ -72,15 +74,31 @@ const LisingCard = ({
                         fill
                         className="object-cover h-full w-full transition group-hover:scale-110"
                     />
-                </div>
-                <div className="grid grid-cols-1">
-                    <div className="font-semibold text-lg">{data.title}</div>
-                    <div className="font-light text-sm">{data.category}</div>
-                    <div className="font-bold text-lg">
-                        {`\u20A9`}
-                        {data.price}
+                    <div className="absolute top-3 right-3">
+                        <HeartButton
+                            listingId={data.id}
+                            currentUser={currentUser}
+                        />
                     </div>
                 </div>
+                <div className="font-semibold text-lg">
+                    {location?.region},{location?.label}
+                </div>
+                <div className="font-light text-neutral-50">
+                    {reservationDate || data.category}
+                </div>
+                <div className="flex flex-row items-center gap-1">
+                    <div className="font-semibold">${price}</div>
+                    {!reservation && <div className="font-light">night</div>}
+                </div>
+                {onAction && actionLabel && (
+                    <Button
+                        label={actionLabel}
+                        onClick={handleCancel}
+                        small
+                        disabled={disabled}
+                    />
+                )}
             </div>
         </div>
     );
