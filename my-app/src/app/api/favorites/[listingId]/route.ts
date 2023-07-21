@@ -18,7 +18,6 @@ export async function POST(requset: Request, { params }: { params: IParams }) {
     }
     let favoriteIds = [...(currentUser.favoriteIds || [])];
     favoriteIds.push(listingId);
-    console.log(favoriteIds);
     const user = await prisma.user.update({
         where: {
             id: currentUser.id,
