@@ -1,5 +1,6 @@
 import { getCurrentUser } from "@/app/actions";
 import getListingById from "@/app/actions/getListingById";
+import getReservations from "@/app/actions/getReservations";
 import { ClientOnly, Container, EmptyState } from "@/app/component";
 import LisintingClient from "@/app/listings/[listingId]/LisintingClient";
 import Image from "next/image";
@@ -11,6 +12,7 @@ interface IParams {
 const ListingPage = async ({ params }: { params: IParams }) => {
     const listing = await getListingById(params);
     const currentUser = await getCurrentUser();
+    const reservaions = await getReservations(params);
     if (!listing) {
         return (
             <ClientOnly>
@@ -20,7 +22,11 @@ const ListingPage = async ({ params }: { params: IParams }) => {
     }
     return (
         <ClientOnly>
-            <LisintingClient currentUser={currentUser} listing={listing} />
+            <LisintingClient
+                currentUser={currentUser}
+                listing={listing}
+                reservations={reservaions}
+            />
         </ClientOnly>
     );
 };
