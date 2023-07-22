@@ -14,3 +14,4 @@ export { default as Description } from "./Description";
 export { default as ListingHead } from "./listings/ListingHead";
 export { default as ListingInfo } from "./listings/ListingInfo";
 export { default as ListingCategory } from "./listings/ListingCategory";
+export { default as ListingReservation } from "./listings/ListingReservation";
