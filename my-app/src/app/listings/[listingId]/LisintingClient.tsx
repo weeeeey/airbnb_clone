@@ -67,7 +67,7 @@ const LisintingClient = ({
         setIsLoading(true);
 
         axios
-            .post(`/api/reservations`, {
+            .post(`/api/reservations/`, {
                 totalPrice,
                 startDate: dateRange.startDate,
                 endDate: dateRange.endDate,

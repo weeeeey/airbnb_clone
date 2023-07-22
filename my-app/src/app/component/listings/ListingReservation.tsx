@@ -47,7 +47,7 @@ const ListingReservation = ({
                     label="Reserve"
                     onClick={onSubmit}
                     disabled={disabled}
-                />{" "}
+                />
             </div>
             <div className="p-4 flex flex-row items-center justify-between font-semibold text-lg">
                 <div>Total</div>
