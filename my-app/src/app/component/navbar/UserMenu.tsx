@@ -6,21 +6,24 @@ import MenuItem from "./MenuItem";
 import { useLoginModal, useRegisterModal, useRentModal } from "@/app/hooks";
 import { signOut } from "next-auth/react";
 import { SafeUser } from "@/app/types";
+import { useRouter } from "next/navigation";
 
 interface UserMenuProps {
     currentUser?: SafeUser | null;
 }
 
 const UserMenu = ({ currentUser }: UserMenuProps) => {
+    const router = useRouter();
     const modalRef = useRef<HTMLDivElement>(null);
     const registerModal = useRegisterModal();
     const loginModal = useLoginModal();
     const rentModal = useRentModal();
-
     const [isOpen, setIsOpen] = useState(false);
+
     const toggleOpen = useCallback(() => {
         setIsOpen((p) => !p);
     }, []);
+
     useEffect(() => {
         const clickOutside = (e: any) => {
             if (isOpen && !modalRef.current?.contains(e.target)) {
@@ -69,7 +72,12 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
                     <div className="flex flex-col cursor-pointer">
                         {currentUser ? (
                             <>
-                                <MenuItem label="My trips" onClick={() => {}} />
+                                <MenuItem
+                                    label="My trips"
+                                    onClick={() => {
+                                        router.push("/trips");
+                                    }}
+                                />
                                 <MenuItem
                                     label="My favorites"
                                     onClick={() => {}}

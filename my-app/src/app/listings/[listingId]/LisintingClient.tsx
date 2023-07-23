@@ -75,7 +75,7 @@ const LisintingClient = ({
             .then(() => {
                 toast.success("Lisiting reserved!");
                 setDateRange(initialDateRange);
-                router.refresh();
+                router.push("/trips");
             })
             .catch(() => {
                 toast.error("Something went wrong");
