@@ -1,6 +1,7 @@
-import { getCurrentUser } from "../actions";
-import { ClientOnly, EmptyState } from "../component";
-import FavoritesClient from "./FavoritesClient";
+import { getCurrentUser, getListing } from '../actions';
+import getFavoriteListings from '../actions/getFavoriteListings';
+import { ClientOnly, EmptyState } from '../component';
+import FavoritesClient from './FavoritesClient';
 
 const FavoritesPage = async () => {
     const currentUser = await getCurrentUser();
@@ -11,13 +12,13 @@ const FavoritesPage = async () => {
             </ClientOnly>
         );
     }
-    const favoriteIds = currentUser.favoriteIds;
-    if (!favoriteIds) {
+    const favoriteListings = await getFavoriteListings();
+    if (favoriteListings.length === 0) {
         return (
             <ClientOnly>
                 <EmptyState
-                    title="No Favorite listing"
-                    subtitle="Click Heartbutton listing"
+                    title="No Favorite found"
+                    subtitle="Looks like you have no favorite listings"
                 />
             </ClientOnly>
         );
@@ -25,7 +26,7 @@ const FavoritesPage = async () => {
     return (
         <ClientOnly>
             <FavoritesClient
-                favoriteIds={favoriteIds}
+                favoriteListings={favoriteListings}
                 currentUser={currentUser}
             />
         </ClientOnly>
