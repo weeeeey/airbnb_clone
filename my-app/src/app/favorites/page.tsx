@@ -1,10 +1,15 @@
-import { getCurrentUser, getListing } from '../actions';
+import { getCurrentUser } from '../actions';
 import getFavoriteListings from '../actions/getFavoriteListings';
 import { ClientOnly, EmptyState } from '../component';
 import FavoritesClient from './FavoritesClient';
 
 const FavoritesPage = async () => {
     const currentUser = await getCurrentUser();
+    const favoriteListings = await getFavoriteListings();
+
+    if (typeof window === 'undefined') {
+        return null;
+    }
     if (!currentUser) {
         return (
             <ClientOnly>
@@ -12,7 +17,7 @@ const FavoritesPage = async () => {
             </ClientOnly>
         );
     }
-    const favoriteListings = await getFavoriteListings();
+
     if (favoriteListings.length === 0) {
         return (
             <ClientOnly>
