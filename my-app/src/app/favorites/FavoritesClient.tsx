@@ -1,11 +1,11 @@
-'use client';
-import { SafeListing, SafeUser } from '@/app/types';
-import LisingCard from '../component/listings/LisingCard';
-import { Heading, Container } from '../component';
-import { useCallback, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import axios from 'axios';
-import { toast } from 'react-hot-toast';
+"use client";
+import { SafeListing, SafeUser } from "@/app/types";
+import LisingCard from "../component/listings/LisingCard";
+import { Heading, Container } from "../component";
+import { useCallback, useState } from "react";
+import { useRouter } from "next/navigation";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 interface FavoritesClientProps {
     currentUser?: SafeUser | null;
@@ -16,7 +16,7 @@ const FavoritesClient = ({
     currentUser,
     favoriteListings,
 }: FavoritesClientProps) => {
-    const [deleteId, setDeleteId] = useState('');
+    const [deleteId, setDeleteId] = useState("");
     const router = useRouter();
 
     const onCancel = useCallback(
@@ -25,14 +25,14 @@ const FavoritesClient = ({
             axios
                 .delete(`/api/favorites/${id}`)
                 .then(() => {
-                    toast.success('Success cancel');
+                    toast.success("Success cancel");
                     router.refresh();
                 })
                 .catch(() => {
-                    toast.error('Something went wrong');
+                    toast.error("Something went wrong");
                 })
                 .finally(() => {
-                    setDeleteId('');
+                    setDeleteId("");
                 });
         },
         [router]
