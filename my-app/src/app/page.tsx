@@ -19,7 +19,6 @@ export default async function Home({ searchParams }: HomeProps) {
             </ClientOnly>
         );
     }
-
     return (
         <ClientOnly>
             <Container>
