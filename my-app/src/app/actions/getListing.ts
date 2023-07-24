@@ -1,39 +1,61 @@
-import prisma from "../libs/prismadb";
+import prisma from "@/app/libs/prismadb";
 
-export interface IListingParams {
+export interface IListingsParams {
     userId?: string;
     guestCount?: number;
-    bathroomCount?: number;
     roomCount?: number;
+    bathroomCount?: number;
     startDate?: string;
     endDate?: string;
     locationValue?: string;
     category?: string;
 }
 
-export default async function getListing(params: IListingParams) {
+export default async function getListings(params: IListingsParams) {
     try {
         const {
             userId,
-            bathroomCount,
-            category,
-            endDate,
-            guestCount,
-            locationValue,
             roomCount,
+            guestCount,
+            bathroomCount,
+            locationValue,
             startDate,
+            endDate,
+            category,
         } = params;
 
         let query: any = {};
+
         if (userId) {
             query.userId = userId;
         }
+
         if (category) {
             query.category = category;
         }
+
+        if (roomCount) {
+            query.roomCount = {
+                gte: +roomCount,
+            };
+        }
+
+        if (guestCount) {
+            query.guestCount = {
+                gte: +guestCount,
+            };
+        }
+
+        if (bathroomCount) {
+            query.bathroomCount = {
+                gte: +bathroomCount,
+            };
+        }
+
         if (locationValue) {
             query.locationValue = locationValue;
         }
+
         if (startDate && endDate) {
             query.NOT = {
                 reservations: {
@@ -52,30 +74,17 @@ export default async function getListing(params: IListingParams) {
                 },
             };
         }
-        if (roomCount) {
-            query.roomCount = {
-                gte: +roomCount,
-            };
-        }
-        if (bathroomCount) {
-            query.bathroomCount = {
-                gte: +bathroomCount,
-            };
-        }
-        if (guestCount) {
-            query.guestCount = {
-                gte: +guestCount,
-            };
-        }
+
         const listings = await prisma.listing.findMany({
             where: query,
             orderBy: {
                 createdAt: "desc",
             },
         });
-        const safeListings = listings.map((list) => ({
-            ...list,
-            createdAt: list.createdAt.toISOString(),
+
+        const safeListings = listings.map((listing) => ({
+            ...listing,
+            createdAt: listing.createdAt.toISOString(),
         }));
 
         return safeListings;
