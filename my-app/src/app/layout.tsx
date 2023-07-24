@@ -4,6 +4,7 @@ import { RegisterModal, LoginModal, RentModal } from "./component/modals";
 import "./globals.css";
 import { Nunito } from "next/font/google";
 import ToasterProvider from "./providers/ToasterProvider";
+import SearchModal from "./component/modals/SearchModal";
 
 export const metadata = {
     title: "Airbnb",
@@ -26,6 +27,7 @@ export default async function RootLayout({
                 <ClientOnly>
                     {/*toasts => 에러 같은 내용 담긴 팝업 창  */}
                     <ToasterProvider />
+                    <SearchModal />
                     <RentModal />
                     <LoginModal />
                     <RegisterModal />
