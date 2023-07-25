@@ -65,6 +65,7 @@ const LoginModal = () => {
                 register={register}
                 id="password"
                 label="Password"
+                type="password"
                 errors={errors}
                 required
                 disabled={isLoading}

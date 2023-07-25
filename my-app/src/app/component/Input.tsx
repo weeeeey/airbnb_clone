@@ -2,6 +2,7 @@
 import { UseFormRegister, FieldValues, FieldErrors } from "react-hook-form";
 import { BiDollar } from "react-icons/bi";
 
+
 interface InputProps {
     id: string;
     label: string;
@@ -22,6 +23,7 @@ const Input = ({
     register,
     errors,
 }: InputProps) => {
+    const regPass = id==="password"?/^(?=.*[a-zA-Z])(?=.*[!@#$%^+=_])(?=.*[0-9]).{8,25}$/:/.*$/
     return (
         <div className="w-full relative">
             {formatPrice && (
@@ -33,7 +35,7 @@ const Input = ({
             <input
                 id={id}
                 disabled={disabled}
-                {...register(id, { required })}
+                {...register(id, { required ,pattern:regPass})}
                 placeholder=" "
                 type={type}
                 className={`peer w-full p-4 pt-6 font-light bg-white border-2 rounded-md outline-none transition disabled:opacity-70 disabled:cursor-not-allowed ${
