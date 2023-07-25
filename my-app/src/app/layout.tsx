@@ -25,7 +25,6 @@ export default async function RootLayout({
         <html lang="en">
             <body className={font.className}>
                 <ClientOnly>
-                    {/*toasts => 에러 같은 내용 담긴 팝업 창  */}
                     <ToasterProvider />
                     <SearchModal />
                     <RentModal />

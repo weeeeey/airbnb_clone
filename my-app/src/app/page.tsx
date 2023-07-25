@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { ClientOnly, Container, EmptyState } from "./component";
 import LisingCard from "./component/listings/LisingCard";
 
