@@ -80,6 +80,7 @@ const RentModal = () => {
                 setIsLoading(false);
             });
     };
+
     const Map = useMemo(
         () => dynamic(() => import("../Map"), { ssr: false }),
         [location]
