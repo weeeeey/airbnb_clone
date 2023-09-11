@@ -1,18 +1,18 @@
-import { ClientOnly, Navbar } from "./component";
-import { getCurrentUser } from "@/app/actions/";
-import { RegisterModal, LoginModal, RentModal } from "./component/modals";
-import "./globals.css";
-import { Nunito } from "next/font/google";
-import ToasterProvider from "./providers/ToasterProvider";
-import SearchModal from "./component/modals/SearchModal";
+import { ClientOnly, Navbar } from './component';
+import { getCurrentUser } from '@/app/actions/';
+import { RegisterModal, LoginModal, RentModal } from './component/modals';
+import './globals.css';
+import { Nunito } from 'next/font/google';
+import ToasterProvider from './providers/ToasterProvider';
+import SearchModal from './component/modals/SearchModal';
 
 export const metadata = {
-    title: "Airbnb",
-    description: "Airbnb clone",
+    title: 'Skywnw',
+    description: 'reservation page',
 };
 
 const font = Nunito({
-    subsets: ["latin"],
+    subsets: ['latin'],
 });
 
 export default async function RootLayout({
