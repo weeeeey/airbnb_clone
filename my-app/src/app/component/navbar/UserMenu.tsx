@@ -50,7 +50,7 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
                     onClick={onRent}
                     className="hidden md:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer text-rose-500"
                 >
-                    Airbnb your home
+                    Skywnw your home
                 </div>
                 <div
                     onClick={toggleOpen}
