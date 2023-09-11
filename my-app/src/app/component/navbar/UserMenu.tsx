@@ -97,7 +97,7 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
                                     }}
                                 />
                                 <MenuItem
-                                    label="Airbnb my home"
+                                    label="skywnw my home"
                                     onClick={rentModal.onOpen}
                                 />
                                 <hr />
