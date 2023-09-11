@@ -7,9 +7,6 @@ const FavoritesPage = async () => {
     const currentUser = await getCurrentUser();
     const favoriteListings = await getFavoriteListings();
 
-    if (typeof window === 'undefined') {
-        return null;
-    }
     if (!currentUser) {
         return (
             <ClientOnly>

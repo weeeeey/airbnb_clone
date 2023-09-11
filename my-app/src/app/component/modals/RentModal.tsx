@@ -1,15 +1,15 @@
-"use client";
-import { useMemo, useState } from "react";
-import dynamic from "next/dynamic";
-import { Modal } from ".";
-import { useRentModal } from "../../hooks";
-import { categories } from "../navbar/Categories";
-import { CategoryInput, CountrySelect, Counter, ImageUpload } from "../inputs";
-import { FieldValues, useForm, SubmitHandler } from "react-hook-form";
-import { Heading, Input } from "../";
-import axios from "axios";
-import { useRouter } from "next/navigation";
-import { toast } from "react-hot-toast";
+'use client';
+import { useMemo, useState } from 'react';
+import dynamic from 'next/dynamic';
+import { Modal } from '.';
+import { useRentModal } from '../../hooks';
+import { categories } from '../navbar/Categories';
+import { CategoryInput, CountrySelect, Counter, ImageUpload } from '../inputs';
+import { FieldValues, useForm, SubmitHandler } from 'react-hook-form';
+import { Heading, Input } from '../';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
+import { toast } from 'react-hot-toast';
 
 enum STEPS {
     CATEGORY = 0,
@@ -40,23 +40,23 @@ const RentModal = () => {
         reset,
     } = useForm<FieldValues>({
         defaultValues: {
-            category: "",
+            category: '',
             location: null,
             guestCount: 1,
             roomCount: 1,
             bathroomCount: 1,
-            imageSrc: "",
+            imageSrc: '',
             price: 1,
-            title: "",
-            description: "",
+            title: '',
+            description: '',
         },
     }); //schema. Listing
-    const category = watch("category");
-    const location = watch("location");
-    const guestCount = watch("guestCount");
-    const roomCount = watch("roomCount");
-    const bathroomCount = watch("bathroomCount");
-    const imageSrc = watch("imageSrc");
+    const category = watch('category');
+    const location = watch('location');
+    const guestCount = watch('guestCount');
+    const roomCount = watch('roomCount');
+    const bathroomCount = watch('bathroomCount');
+    const imageSrc = watch('imageSrc');
 
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         if (step !== STEPS.PRICE) {
@@ -64,17 +64,17 @@ const RentModal = () => {
         }
         setIsLoading(true);
         axios
-            .post("/api/listings", data)
+            .post('/api/listings', data)
 
             .then(() => {
-                toast.success("Listing Created!");
+                toast.success('Listing Created!');
                 reset();
                 setStep(STEPS.CATEGORY);
                 rentModal.onClose();
                 router.refresh();
             })
             .catch(() => {
-                toast.error("Something went wrong");
+                toast.error('Something went wrong');
             })
             .finally(() => {
                 setIsLoading(false);
@@ -82,7 +82,7 @@ const RentModal = () => {
     };
 
     const Map = useMemo(
-        () => dynamic(() => import("../Map"), { ssr: false }),
+        () => dynamic(() => import('../Map'), { ssr: false }),
         [location]
     );
 
@@ -97,15 +97,15 @@ const RentModal = () => {
 
     const actionLabel = useMemo(() => {
         if (step === STEPS.PRICE) {
-            return "Create";
+            return 'Create';
         }
-        return "Next";
+        return 'Next';
     }, [step]);
     const secondaryActionLabel = useMemo(() => {
         if (step === STEPS.CATEGORY) {
             return undefined;
         }
-        return "Back";
+        return 'Back';
     }, [step]);
 
     let bodyContet = <></>;
@@ -122,7 +122,7 @@ const RentModal = () => {
                             icon={item.icon}
                             // category는 watch를 통해 내가 지켜보고 있는 그것
                             onClick={(cate) => {
-                                setCustomValue("category", cate);
+                                setCustomValue('category', cate);
                             }}
                             selected={category === item.label}
                             label={item.label}
@@ -142,7 +142,7 @@ const RentModal = () => {
                 />
                 <CountrySelect
                     value={location}
-                    onChange={(value) => setCustomValue("location", value)}
+                    onChange={(value) => setCustomValue('location', value)}
                 />
                 <Map center={location?.latlng} />
             </div>
@@ -158,21 +158,21 @@ const RentModal = () => {
                 <Counter
                     title="Guests"
                     subtitle="How many guest do you allow?"
-                    onChange={(value) => setCustomValue("guestCount", value)}
+                    onChange={(value) => setCustomValue('guestCount', value)}
                     value={guestCount}
                 />
                 <hr />
                 <Counter
                     title="Rooms"
                     subtitle="How many rooms do you have?"
-                    onChange={(value) => setCustomValue("roomCount", value)}
+                    onChange={(value) => setCustomValue('roomCount', value)}
                     value={roomCount}
                 />
                 <hr />
                 <Counter
                     title="Bathrooms"
                     subtitle="How many bathrooms do you allow?"
-                    onChange={(value) => setCustomValue("bathroomCount", value)}
+                    onChange={(value) => setCustomValue('bathroomCount', value)}
                     value={bathroomCount}
                 />
             </div>
@@ -186,7 +186,7 @@ const RentModal = () => {
                     subTitle="Show guests what your place looks like"
                 />
                 <ImageUpload
-                    onChange={(value) => setCustomValue("imageSrc", value)}
+                    onChange={(value) => setCustomValue('imageSrc', value)}
                     value={imageSrc}
                 />
             </div>

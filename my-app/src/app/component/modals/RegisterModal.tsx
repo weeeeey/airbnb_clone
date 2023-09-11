@@ -1,14 +1,14 @@
-"use client";
-import axios from "axios";
-import { AiFillGithub } from "react-icons/ai";
-import { FcGoogle } from "react-icons/fc";
-import { useState, useCallback } from "react";
-import { useRegisterModal, useLoginModal } from "../../hooks";
-import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
-import { Modal } from "./";
-import { Button, Heading, Input } from "../";
-import { toast } from "react-hot-toast";
-import { signIn } from "next-auth/react";
+'use client';
+import axios from 'axios';
+import { AiFillGithub } from 'react-icons/ai';
+import { FcGoogle } from 'react-icons/fc';
+import { useState, useCallback, useRef } from 'react';
+import { useRegisterModal, useLoginModal } from '../../hooks';
+import { useForm, FieldValues, SubmitHandler } from 'react-hook-form';
+import { Modal } from './';
+import { Button, Heading, Input } from '../';
+import { toast } from 'react-hot-toast';
+import { signIn } from 'next-auth/react';
 
 const RegisterModal = () => {
     const registerModal = useRegisterModal();
@@ -17,26 +17,31 @@ const RegisterModal = () => {
     const {
         register,
         handleSubmit,
+        watch,
         formState: { errors },
     } = useForm<FieldValues>({
         defaultValues: {
-            name: "",
-            email: "",
-            password: "",
+            name: '',
+            email: '',
+            password: '',
         },
     });
+
+    const password = useRef({});
+    password.current = watch('password', '');
+
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         setIsLoading(true);
 
         axios
-            .post("/api/register", data)
+            .post('/api/register', data)
             .then(() => {
-                toast.success("Success Register");
+                toast.success('Success Register');
                 registerModal.onClose();
                 loginModal.onOpen();
             })
             .catch((e) => {
-                toast.error("Something went wrong.");
+                toast.error('Something went wrong.');
             })
             .finally(() => {
                 setIsLoading(false);
@@ -75,6 +80,15 @@ const RegisterModal = () => {
                 required
                 disabled={isLoading}
             />
+            <Input
+                register={register}
+                id="passwordConfirm"
+                label="passwordConfirm"
+                type="password"
+                errors={errors}
+                required
+                disabled={isLoading}
+            />
         </div>
     );
 
@@ -84,7 +98,7 @@ const RegisterModal = () => {
                 label="Continue with Google"
                 outline
                 onClick={() => {
-                    signIn("google");
+                    signIn('google');
                 }}
                 icon={FcGoogle}
             />
@@ -92,7 +106,7 @@ const RegisterModal = () => {
                 label="Continue with Github"
                 outline
                 onClick={() => {
-                    signIn("github");
+                    signIn('github');
                 }}
                 icon={AiFillGithub}
             />
