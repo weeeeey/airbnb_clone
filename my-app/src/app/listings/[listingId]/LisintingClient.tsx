@@ -1,27 +1,27 @@
-"use client";
+'use client';
 
-import axios from "axios";
-import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
-import { SafeListing, SafeUser, SafeReservation } from "@/app/types";
+import axios from 'axios';
+import { differenceInCalendarDays, eachDayOfInterval } from 'date-fns';
+import { SafeListing, SafeUser, SafeReservation } from '@/app/types';
 
 import {
     Container,
     ListingHead,
     ListingInfo,
     ListingReservation,
-} from "@/app/component";
-import { categories } from "@/app/component/navbar/Categories";
+} from '@/app/component';
+import { categories } from '@/app/component/navbar/Categories';
 
-import { useLoginModal } from "@/app/hooks";
-import { toast } from "react-hot-toast";
-import { useRouter } from "next/navigation";
-import { useMemo, useState, useCallback, useEffect } from "react";
-import { Range } from "react-date-range";
+import { useLoginModal } from '@/app/hooks';
+import { toast } from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
+import { useMemo, useState, useCallback, useEffect } from 'react';
+import { Range } from 'react-date-range';
 
 const initialDateRange = {
     startDate: new Date(),
     endDate: new Date(),
-    key: "selection",
+    key: 'selection',
 };
 
 interface LisintingClientProps {
@@ -73,12 +73,12 @@ const LisintingClient = ({
                 listingId: listing.id,
             })
             .then(() => {
-                toast.success("Lisiting reserved!");
+                toast.success('Lisiting reserved!');
                 setDateRange(initialDateRange);
-                router.push("/trips");
+                router.push('/trips');
             })
             .catch(() => {
-                toast.error("Something went wrong");
+                toast.error('Something went wrong');
             })
             .finally(() => {
                 setIsLoading(false);

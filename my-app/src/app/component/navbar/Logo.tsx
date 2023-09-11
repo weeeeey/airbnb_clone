@@ -1,21 +1,19 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import { useRouter } from "next/navigation";
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 const Logo = () => {
     const router = useRouter();
     return (
-        <Image
+        <button
             onClick={() => {
-                router.push("/");
+                router.push('/');
             }}
-            src="/images/logo.svg"
-            alt="Logo"
-            className="hidden md:block cursor-pointer"
-            height="100"
-            width="100"
-        ></Image>
+            className="hidden md:block cursor-pointer text-rose-500 font-bold text-xl"
+        >
+            skywnw
+        </button>
     );
 };
 

@@ -1,12 +1,12 @@
-"use client";
-import { AiOutlineMenu } from "react-icons/ai";
-import { Avatar } from "../";
-import { useState, useCallback, useRef, useEffect } from "react";
-import MenuItem from "./MenuItem";
-import { useLoginModal, useRegisterModal, useRentModal } from "@/app/hooks";
-import { signOut } from "next-auth/react";
-import { SafeUser } from "@/app/types";
-import { useRouter } from "next/navigation";
+'use client';
+import { AiOutlineMenu } from 'react-icons/ai';
+import { Avatar } from '../';
+import { useState, useCallback, useRef, useEffect } from 'react';
+import MenuItem from './MenuItem';
+import { useLoginModal, useRegisterModal, useRentModal } from '@/app/hooks';
+import { signOut } from 'next-auth/react';
+import { SafeUser } from '@/app/types';
+import { useRouter } from 'next/navigation';
 
 interface UserMenuProps {
     currentUser?: SafeUser | null;
@@ -30,9 +30,9 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
                 setIsOpen(false);
             }
         };
-        document.addEventListener("mousedown", clickOutside);
+        document.addEventListener('mousedown', clickOutside);
         return () => {
-            document.removeEventListener("mousedown", clickOutside);
+            document.removeEventListener('mousedown', clickOutside);
         };
     }, [isOpen]);
 
@@ -48,7 +48,7 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
             <div className="flex flex-row items-center gap-3">
                 <div
                     onClick={onRent}
-                    className="hidden md:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer"
+                    className="hidden md:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer text-rose-500"
                 >
                     Airbnb your home
                 </div>
@@ -59,7 +59,7 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
                     <AiOutlineMenu />
                     <div className="hidden md:block">
                         <Avatar
-                            src={currentUser?.image ? currentUser.image : ""}
+                            src={currentUser?.image ? currentUser.image : ''}
                         />
                     </div>
                 </div>
@@ -75,25 +75,25 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
                                 <MenuItem
                                     label="My trips"
                                     onClick={() => {
-                                        router.push("/trips");
+                                        router.push('/trips');
                                     }}
                                 />
                                 <MenuItem
                                     label="My favorites"
                                     onClick={() => {
-                                        router.push("/favorites");
+                                        router.push('/favorites');
                                     }}
                                 />
                                 <MenuItem
                                     label="My reservations"
                                     onClick={() => {
-                                        router.push("/reservations");
+                                        router.push('/reservations');
                                     }}
                                 />
                                 <MenuItem
                                     label="My properties"
                                     onClick={() => {
-                                        router.push("/properties");
+                                        router.push('/properties');
                                     }}
                                 />
                                 <MenuItem
