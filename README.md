@@ -48,7 +48,7 @@ NEXT_PUBLIC_CLOUDINARY_CLOUD_API_SECRET =
 
 ## Technologies Used
 
-- **React****: UI 개발을 위한 주요 라이브러리.
+- **React**: UI 개발을 위한 주요 라이브러리.
 - **Next.js**: React 앱을 서버 사이드 렌더링 및 라우팅을 위한 프레임워크.
 - **Tailwind CSS**: 빠르고 유연한 CSS 프레임워크로 스타일링.
 - **React-Leaflet**: 지도 표시를 위한 리액트 컴포넌트 라이브러리.
