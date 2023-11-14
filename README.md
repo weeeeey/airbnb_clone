@@ -69,17 +69,6 @@ NEXT_PUBLIC_CLOUDINARY_CLOUD_API_SECRET =
 - **Zustand**: 상태 관리를 위한 라이브러리.
 
 
-
--   **Next.js**: 서버 렌더링 애플리케이션을 구축하기 위한 React 프레임워크.
--   **Prisma**: Node.js용 데이터베이스 툴킷 및 ORM(Object-Relational Mapping).
--   **Clerk**: 인증 및 사용자 관리를 위한 라이브러리.
--   **Zustand**: 상태 관리 라이브러리.
--   **Socket.io**: 실시간 통신을 위한 라이브러리.
--   **Livekit**: 비디오 및 오디오 통신을 위한 라이브러리.
--   **Tailwind CSS**: 스타일링을 위한 유틸리티 중심의 CSS 프레임워크.
--   **TypeScript**: 정적 타입 지원을 갖춘 JavaScript의 확장 버전.
--   **shadcn/ui**: Radix UI와 Tailwind CSS를 사용하여 만든 재사용 가능한 컴포넌트.
-
 ## Deployment
 
 Our project is deployed on Railway, and you can access it at https://wiscord.up.railway.app/.
